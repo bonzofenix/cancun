@@ -35,7 +35,7 @@ class Foo
   def salute
       h = HighLine.new
       h.ask 'what is your name?'
-      h.say "Hi #{name}
+      h.say "Hi #{name}"
     end
   end
 end
