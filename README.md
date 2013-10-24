@@ -1,5 +1,4 @@
 # Cancun
-# Cancun
 
 DSL for testing command line applications in ruby
 
