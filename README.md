@@ -1,6 +1,7 @@
 # Cancun
+# Cancun
 
-TODO: Write a gem description
+DSL for testing command line applications in ruby
 
 ## Installation
 
@@ -18,19 +19,16 @@ Or install it yourself as:
 
 ## Usage
 
-### Testing highline with Rspec
-
-Require cancun on your gemspec by adding this line on your spec_helper.rb
-
+Require cancun on your spec_helper.rb when using *Rspec*:
 ```ruby
 require 'cancun'
 ```
 
-on your spec cancun works the following way:
 
+### Testing highline with Rspec:
+
+For testing this ruby class:
 ```ruby
-require 'spec_helper'
-
 class Foo
   def salute
       h = HighLine.new
@@ -39,6 +37,11 @@ class Foo
     end
   end
 end
+```
+cancun would work the following way:
+
+```ruby
+require 'spec_helper'
 
 describe Foo do
   include Cancun::Highline
@@ -52,12 +55,36 @@ describe Foo do
       end
     end
   end
-end
 ```
 
-#testing executable with Rspec
+###testing executable with Rspec:
 
-TODO
+For testing this ./executable:
+
+```bash
+#!/usr/bin/env ruby
+
+puts 'who are you?'
+name = gets
+puts "Hi #{name}"
+```
+
+You would use this code:
+
+```ruby
+require 'spec_helper'
+
+describe 'executable' do
+  include Cancun::Executable
+  
+  it 'test executable' do
+    run './executable' do
+      type 'bonzo'
+      output.should be('Hi bonzo')
+    end
+  end
+end
+```
 
 ## Contributing
 
