@@ -5,4 +5,3 @@ module Cancun
 end
 require 'cancun/executable'
 require 'cancun/highline'
-re
