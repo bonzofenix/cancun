@@ -18,7 +18,46 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Testing highline with Rspec
+
+Require cancun on your gemspec by adding this line on your spec_helper.rb
+
+```ruby
+require 'cancun'
+```
+
+on your spec cancun works the following way:
+
+```ruby
+require 'spec_helper'
+
+class Foo
+  def salute
+      h = HighLine.new
+      h.ask 'what is your name?'
+      h.say "Hi #{name}
+    end
+  end
+end
+
+describe Foo do
+  include Cancun::Highline
+  before { init_highline_test }
+ 
+  describe '#hello' do
+    it 'says hello correctly' do
+      run described_class.new.salute do
+        type 'bonzo'
+        output.should be('Hi bonzo')
+      end
+    end
+  end
+end
+```
+
+#testing executable with Rspec
+
+TODO
 
 ## Contributing
 
