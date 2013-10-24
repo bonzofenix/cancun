@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Cancun::VERSION
   spec.authors       = ["bonzofenix"]
   spec.email         = ["bonzofenix@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Provides helpers to test via Rspec or any other test framework by stubing highline or in integration tests directly by handling STDIN AND STDOUT}
+  spec.summary       = %q{this gem should provide a simple DSL solution for unit and integration tests of Command Line apps}
+  spec.homepage      = "https://rubygems.org/gems/cancun"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
