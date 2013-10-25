@@ -1,6 +1,8 @@
 module Cancun
   module Highline
-    def init_highline_test
+    attr_reader :exit_code
+
+    def  init_cancun_highline
       @input_read, @input_write = IO.pipe
       @output_read, @output_write = IO.pipe
       @exit_code = nil
@@ -18,18 +20,13 @@ module Cancun
     def run
       Thread.new do
         Thread.abort_on_exception = true
-        begin
-          Timeout.timeout(0.3){ @exit_code = yield }
-        rescue Timeout::Error => e
-
-        end
+        Timeout.timeout(0.3){ @exit_code = yield } rescue Timeout::Error
       end
     end
 
     def run_sync
       run { yield }.join
     end
-    attr_reader :exit_code
     def output
       @output ||= ''
       @output << @output_read.dup.read_nonblock(4096) rescue Errno::EAGAIN
