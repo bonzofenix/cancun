@@ -2,6 +2,15 @@ module Cancun
   module Highline
     attr_reader :exit_code
 
+    class << self
+      def no_timeout!
+        @no_timeout = true
+      end
+
+      def timeout?
+        !!@no_timeout
+      end
+    end
     def  init_cancun_highline
       @input_read, @input_write = IO.pipe
       @output_read, @output_write = IO.pipe
@@ -20,7 +29,18 @@ module Cancun
     def run
       Thread.new do
         Thread.abort_on_exception = true
-        Timeout.timeout(0.3){ @exit_code = yield } rescue Timeout::Error
+        begin
+
+        if Cancun::Highline.timeout?
+          Timeout.timeout(0.3){ @exit_code = yield }
+        else
+        @exit_code = yield
+
+        end
+        rescue Timeout::Error
+          warn 'WARNING: cancun timeout, you can set Cancun::Highline.no_timeout!'
+        end
+
       end
     end
 
