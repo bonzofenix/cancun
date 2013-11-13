@@ -8,7 +8,7 @@ module Cancun
       end
 
       def timeout?
-        !!@no_timeout
+        !@no_timeout
       end
     end
     def  init_cancun_highline
