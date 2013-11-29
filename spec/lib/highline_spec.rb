@@ -9,8 +9,10 @@ describe 'highline spec' do
 
   it 'works for highline' do
       type 'bonzo'
-      run_sync {Foo.new.salute}
-      output.should include('Hi Bonzo')
+      execute do
+        Foo.new.salute
+      end.and_type 'bonzo'
+      output.should include('Hi bonzo')
   end
 end
 

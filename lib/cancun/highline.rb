@@ -1,5 +1,7 @@
 module Cancun
   module Highline
+    include Dsl
+
     attr_reader :exit_code
 
     class << self
@@ -21,26 +23,24 @@ module Cancun
       HighLine.stub(:new).and_return(high_line)
     end
 
+
     def type(*args)
       @input_write << [*args].flatten.join("\n") + "\n"
       sleep 0.01
     end
 
-    def run
+    def execute
       Thread.new do
         Thread.abort_on_exception = true
         begin
-
-        if Cancun::Highline.timeout?
-          Timeout.timeout(0.3){ @exit_code = yield }
-        else
-        @exit_code = yield
-
-        end
+          if Cancun::Highline.timeout?
+            Timeout.timeout(0.3){ @exit_code = yield }
+          else
+            @exit_code = yield
+          end
         rescue Timeout::Error
           warn 'WARNING: cancun timeout, you can set Cancun::Highline.no_timeout!'
         end
-
       end
     end
 
