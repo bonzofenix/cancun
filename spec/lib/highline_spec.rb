@@ -8,11 +8,10 @@ describe 'highline spec' do
   end
 
   it 'works for highline' do
-      type 'bonzo'
-      execute do
-        Foo.new.salute
-      end.and_type 'bonzo'
-      output.should include('Hi bonzo')
+    execute do
+      Foo.new.salute
+    end.and_type 'bonzo'
+    expect(output).to include('Hi bonzo')
   end
 end
 
