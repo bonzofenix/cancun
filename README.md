@@ -52,6 +52,7 @@ describe Foo do
     execute do
       Foo.new.salute
     end.and_type 'bonzo'
+    expect(output).to include('Hi bonzo')
   end
 ```
 
