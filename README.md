@@ -1,4 +1,5 @@
 # Cancun
+[![Build Status](https://travis-ci.org/bonzofenix/cancun.png)](https://travis-ci.org/bonzofenix/cancun)
 
 DSL for testing command line applications in ruby
 
