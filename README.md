@@ -48,42 +48,12 @@ describe Foo do
  
   describe '#hello' do
     it 'says hello correctly' do
-      run described_class.new.salute do
-        type 'bonzo'
-        output.should be('Hi bonzo')
-      end
-    end
+    execute do
+      Foo.new.salute
+    end.and_type 'bonzo'
   end
 ```
 
-###testing executable with Rspec:
-
-For testing this ./executable:
-
-```bash
-#!/usr/bin/env ruby
-
-puts 'who are you?'
-name = gets
-puts "Hi #{name}"
-```
-
-You would use this code:
-
-```ruby
-require 'spec_helper'
-
-describe 'executable' do
-  include Cancun::Executable
-  
-  it 'test executable' do
-    run './executable' do
-      type 'bonzo'
-      output.should be('Hi bonzo')
-    end
-  end
-end
-```
 
 ## Contributing
 
