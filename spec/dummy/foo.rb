@@ -1,7 +1,6 @@
 require 'highline'
 
 class Foo
-:q
   def salute
     h = HighLine.new
     name = h.ask 'what is your name?'
