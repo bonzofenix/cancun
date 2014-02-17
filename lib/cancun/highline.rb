@@ -1,5 +1,6 @@
 require 'timeout'
 require 'sourcify'
+require 'highline'
 
 class Cancun
   module Highline
@@ -10,7 +11,11 @@ class Cancun
       @input_read, @input_write = IO.pipe
       @output_read, @output_write = IO.pipe
       @high_line = HighLine.new(@input_read, @output_write)
-      allow(HighLine).to receive(:new).and_return(@high_line)
+
+      HighLine.stub(:new).and_return(@high_line)
+    end
+
+    def high_line
     end
 
     def execute(&cmd)
