@@ -28,6 +28,9 @@ class Cancun
         @output << @output_read.dup.read_nonblock(4096) rescue Errno::EAGAIN
         @output
     end
+    def execute!(&cmd)
+      TestCase.new(self).execute!(&cmd)
+    end
 
 
     class TestCase
@@ -40,7 +43,10 @@ class Cancun
         self
       end
 
-      def output
+      def execute!(&block)
+        execute(&block)
+        run
+        sleep 0.01
       end
 
       def and_type(*args)
