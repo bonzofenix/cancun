@@ -12,5 +12,5 @@ class Cancun
   end
 end
 
-require 'cancun/executable'
+require 'cancun/test'
 require 'cancun/highline'

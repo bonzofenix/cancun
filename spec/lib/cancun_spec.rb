@@ -1,11 +1,8 @@
 require 'spec_helper'
 
-describe 'highline spec' do
-  include Cancun::Highline
-
-  before do
-    init_cancun_highline
-  end
+describe 'cancun spec' do
+  include Cancun::Test
+  before{ init_cancun_test }
 
   it 'works for highline' do
     execute do
