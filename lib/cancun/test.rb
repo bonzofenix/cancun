@@ -1,5 +1,4 @@
 require 'timeout'
-require 'sourcify'
 require 'highline'
 require 'cancun'
 
